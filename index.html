@@ -7,32 +7,35 @@
     </head>
 
     <body>
-        <p id="display">1234</p>
-        <button>Clear</button>
-        <div id="rowOne">
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button>/</button>
+        <p id="display"></p>
+        <div id ="buttons">
+            <button>Clear</button>
+            <div class="row">
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button>/</button>
+            </div>
+            <div class="row">
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button>*</button>
+            </div>
+            <div class="row">
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>-</button>
+            </div>
+            <div class="row">
+                <button>0</button>
+                <button>.</button>
+                <button>=</button>
+                <button>+</button>
+            </div>
         </div>
-        <div id="rowTwo">
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>*</button>
-        </div>
-        <div id="rowThree">
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>-</button>
-        </div>
-        <div id="rowFour">
-            <button>0</button>
-            <button>.</button>
-            <button>=</button>
-            <button>+</button>
-        </div>
+        
     </body>
 </html>
 
@@ -72,4 +75,19 @@
                 multiply(num1, num2);
         }
     }
+
+    let displayContent = '';
+    let display = document.querySelector("#display");
+    let buttons = document.querySelectorAll("button");
+    buttons.forEach(function(button) {
+        button.addEventListener('click', () => {
+            if(event.target.textContent == "=") {
+
+            } else {
+                displayContent += event.target.textContent;
+                display.textContent = displayContent;
+            }
+        })
+    })
+    
 </script>
