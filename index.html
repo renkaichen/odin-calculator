@@ -96,6 +96,9 @@
                 let last = displayContent.substring(displayContent.length - 1, displayContent.length);
                 if (operators.includes(last)) {
                     displayContent = displayContent.slice(0,-1);
+                } else if (operator != '') {
+                    let nums = displayContent.split(operator);
+                    operate(operator,parseInt(nums[0]),parseInt(nums[1]));
                 }
                 operator = event.target.textContent;
                 updateDisplay(event.target.textContent);
