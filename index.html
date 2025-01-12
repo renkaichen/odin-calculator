@@ -41,19 +41,23 @@
 
 <script>
     function add(num1, num2) {
-        return num1 + num2;
+        clearCalc();
+        updateDisplay(num1 + num2);
     }
 
     function subtract(num1, num2) {
-        return num1 - num2;
+        clearCalc();
+        updateDisplay(num1 - num2);
     }
 
     function multiply(num1, num2) {
-        return num1 * num2;
+        clearCalc();
+        updateDisplay(num1 * num2);
     }
 
     function divide(num1, num2) {
-        return num1 / num2;
+        clearCalc();
+        updateDisplay(num1 / num2);
     }
 
     let num1;
@@ -80,17 +84,20 @@
     let display = document.querySelector("#display");
     let buttons = document.querySelectorAll("button");
     let operators = ["+", "-", "*", "/"];
+    
     buttons.forEach(function(button) {
         button.addEventListener('click', () => {
             if(event.target.textContent == "=") {
-
+                let nums = displayContent.split(operator);
+                operate(operator,parseInt(nums[0]),parseInt(nums[1]));
             } else if (event.target.textContent == "Clear") {
-                updateDisplay();
+                clearCalc();
             } else if (operators.includes(event.target.textContent)) {
                 let last = displayContent.substring(displayContent.length - 1, displayContent.length);
-                if (last === "+" || last === "-" || last === "/" || last === "*") {
+                if (operators.includes(last)) {
                     displayContent = displayContent.slice(0,-1);
                 }
+                operator = event.target.textContent;
                 updateDisplay(event.target.textContent);
             } else {
                 updateDisplay(event.target.textContent);
@@ -99,12 +106,13 @@
     })
 
     function updateDisplay(toAdd = "") {
-        if (toAdd != '') {
-            displayContent += toAdd;
-        } else {
-            displayContent = '';
-        }
+        displayContent += toAdd;
         display.textContent = displayContent;
     }
     
+    function clearCalc() {
+        operator = '';
+        displayContent = '';
+        display.textContent = '';
+    }
 </script>
